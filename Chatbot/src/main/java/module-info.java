@@ -10,6 +10,7 @@ module org.example.chatbot {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires java.sql;
+    requires org.postgresql.jdbc;
 
     opens org.example.chatbot to javafx.fxml;
     exports org.example.chatbot;
