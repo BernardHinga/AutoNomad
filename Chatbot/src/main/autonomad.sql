@@ -87,7 +87,7 @@ CREATE TABLE car_type (
 
 CREATE TABLE features (
     feature_id SERIAL NOT NULL,
-    feature varchar(15) NOT NULL,
+    feature varchar(50) NOT NULL,
     PRIMARY KEY (feature_id)
 );
 
@@ -104,25 +104,40 @@ CREATE TABLE topic (
 );
 
 ALTER TABLE booking
-    ADD FOREIGN KEY (customer_id) REFERENCES customer(customer_id),
-    ADD FOREIGN KEY (car_id) REFERENCES car(car_id);
+    ADD FOREIGN KEY (customer_id) REFERENCES customer(customer_id)
+        ON DELETE CASCADE ON UPDATE CASCADE,
+    ADD FOREIGN KEY (car_id) REFERENCES car(car_id)
+        ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE FAQ
-    ADD FOREIGN KEY (topic_id) REFERENCES topic(topic_id);
+    ADD FOREIGN KEY (topic_id) REFERENCES topic(topic_id)
+        ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE support_ticket
-    ADD FOREIGN KEY (customer_id) REFERENCES customer(customer_id),
-    ADD FOREIGN KEY (topic_id) REFERENCES topic(topic_id),
-    ADD FOREIGN KEY (status_id) REFERENCES status(status_id);
+    ADD FOREIGN KEY (customer_id) REFERENCES customer(customer_id)
+        ON DELETE CASCADE ON UPDATE CASCADE,
+    ADD FOREIGN KEY (topic_id) REFERENCES topic(topic_id)
+        ON DELETE CASCADE ON UPDATE CASCADE,
+    ADD FOREIGN KEY (status_id) REFERENCES status(status_id)
+        ON UPDATE CASCADE;
 ALTER TABLE chat_session
-    ADD FOREIGN KEY (customer_id) REFERENCES customer(customer_id),
-    ADD FOREIGN KEY (status_id) REFERENCES status(status_id);
+    ADD FOREIGN KEY (customer_id) REFERENCES customer(customer_id)
+        ON DELETE CASCADE ON UPDATE CASCADE,
+    ADD FOREIGN KEY (status_id) REFERENCES status(status_id)
+        ON UPDATE CASCADE;
 ALTER TABLE chat_log
-    ADD FOREIGN KEY (session_id) REFERENCES chat_session(session_id),
-    ADD FOREIGN KEY (topic_id) REFERENCES topic(topic_id);
+    ADD FOREIGN KEY (session_id) REFERENCES chat_session(session_id)
+        ON DELETE CASCADE ON UPDATE CASCADE,
+    ADD FOREIGN KEY (topic_id) REFERENCES topic(topic_id)
+        ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE review
-    ADD FOREIGN KEY (customer_id) REFERENCES customer(customer_id),
-    ADD FOREIGN KEY (booking_id) REFERENCES booking(booking_id);
+    ADD FOREIGN KEY (customer_id) REFERENCES customer(customer_id)
+        ON DELETE CASCADE ON UPDATE CASCADE,
+    ADD FOREIGN KEY (booking_id) REFERENCES booking(booking_id)
+        ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE car
-    ADD FOREIGN KEY (car_type_id) REFERENCES car_type(car_type_id);
+    ADD FOREIGN KEY (car_type_id) REFERENCES car_type(car_type_id)
+        ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE car_features
-    ADD FOREIGN KEY (car_id) REFERENCES car(car_id),
-    ADD FOREIGN KEY (feature_id) REFERENCES features(feature_id);
+    ADD FOREIGN KEY (car_id) REFERENCES car(car_id)
+        ON DELETE CASCADE ON UPDATE CASCADE,
+    ADD FOREIGN KEY (feature_id) REFERENCES features(feature_id)
+        ON DELETE CASCADE ON UPDATE CASCADE;

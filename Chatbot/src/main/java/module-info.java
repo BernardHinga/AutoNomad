@@ -9,6 +9,7 @@ module org.example.chatbot {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
+    requires java.sql;
 
     opens org.example.chatbot to javafx.fxml;
     exports org.example.chatbot;
