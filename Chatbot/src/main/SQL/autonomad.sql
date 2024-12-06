@@ -14,6 +14,14 @@ CREATE TABLE customer (
     second_name varchar(50) NOT NULL,
     email varchar(50) NOT NULL,
     phone BIGINT NOT NULL,
+    password varchar(50) NOT NULL,
+    PRIMARY KEY (customer_id)
+);
+
+CREATE TABLE customer_details (
+    customer_id INTEGER NOT NULL,
+    DL_number varchar(50) NOT NULL,
+    National_ID_number INTEGER NOT NULL,
     PRIMARY KEY (customer_id)
 );
 
@@ -140,4 +148,7 @@ ALTER TABLE car_features
     ADD FOREIGN KEY (car_id) REFERENCES car(car_id)
         ON DELETE CASCADE ON UPDATE CASCADE,
     ADD FOREIGN KEY (feature_id) REFERENCES features(feature_id)
+        ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE customer_details
+    ADD FOREIGN KEY (customer_id) REFERENCES customer(customer_id)
         ON DELETE CASCADE ON UPDATE CASCADE;
