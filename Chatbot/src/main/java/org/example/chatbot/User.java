@@ -37,4 +37,34 @@ public class User {
             return false;
         }
     }
+
+    public int getCustomerId(String email) {
+        try (Connection conn = db_connection.connect()) {
+            String query = "SELECT customer_id FROM customer WHERE email = ?";
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1, email);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("customer_id");
+            }
+        } catch (SQLException e) {
+            System.out.println("Couldn't retrieve ID. SQL Error: " + e.getMessage());
+        }
+        return -1;
+    }
+
+    public String getCustomerName(int customerID) {
+        try (Connection conn = db_connection.connect()) {
+            String query = "SELECT first_name FROM customer WHERE customer_id = ?";
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setInt(1, customerID);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getString("first_name");
+            }
+        } catch (SQLException e) {
+            System.out.println("Couldn't retrieve username. SQL Error: " + e.getMessage());
+        }
+        return null;
+    }
 }
