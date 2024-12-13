@@ -32,7 +32,6 @@ public class database {
         try{
             //  Use DriverManager class to try and establish a connection to the database.
             database.db_Connection = DriverManager.getConnection(db_url, db_user, db_pass);
-            System.out.println("Connected to database");
         }catch(SQLException e){
             // Handle SQL exceptions and display the error message.
             System.out.println("Connection failed\n" + e.getMessage());
@@ -50,7 +49,6 @@ public class database {
         if(db_Connection != null) {
             try {
                 database.db_Connection.close();   // Close connection.
-                System.out.println("Database disconnected");
             } catch (SQLException e) {
                 //  Handle SQL exceptions and display the error message.
                 System.out.println("Could not disconnect database\n" + e.getMessage());
