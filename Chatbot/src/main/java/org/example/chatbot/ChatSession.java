@@ -3,6 +3,8 @@ package org.example.chatbot;
 import java.sql.*;
 
 public class ChatSession {
+    public int sessionId;
+
     public int createSession(int customerId) {
         try (Connection conn = db_connection.connect()) {
             String query = "INSERT INTO chat_session (customer_id, start_time) VALUES (?, ?) RETURNING session_id";

@@ -49,4 +49,20 @@ class CarInventory {
             return false;
         }
     }
+
+    public void displayInventory() {
+        List<Map<String, Object>> cars = viewInventory();
+        System.out.printf("%-10s %-15s %-15s %-10s%n", "Car ID", "Make", "Model", "Rental Price");
+        System.out.println("-----------------------------------------------------------");
+
+        for (Map<String, Object> car : cars) {
+            System.out.printf(
+                    "%-10s %-15s %-15s %-10s%n",
+                    car.get("car_id"),
+                    car.get("car_make"),
+                    car.get("car_model"),
+                    car.get("rental_price")
+            );
+        }
+    }
 }
